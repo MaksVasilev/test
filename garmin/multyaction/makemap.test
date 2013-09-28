@@ -1,0 +1,34 @@
+#!/bin/sh
+
+export PATH=./jre/bin/:./jre/:$PATH
+
+BASEDIR=.
+MKGMAPDIR=/usr/share/java
+
+([ -d $BASEDIR/img.test ] && rm -rf $BASEDIR/img.test/*) || mkdir $BASEDIR/img.test 
+
+java -jar $MKGMAPDIR/mkgmap.jar --verbose \
+        --gmapsupp --tdbfile \
+        --mapname=99999900 \
+        --family-name="OpenStreetMap" \
+        --product-id=1 \
+        --family-id=43 \
+        --series-name="Russia" \
+        --description="TEST, v.`date +%d.%m.%Y`" \
+        --country-name="RUSSIA" --country-abbr="RUS" \
+        --charset=cp1251 --code-page=1251 --lower-case \
+	--name-tag-list=name:ru,name,name:en,int_name \
+        --style-file=$BASEDIR/test/ \
+        --remove-short-arcs \
+        --drive-on-right \
+        --check-roundabouts \
+        --output-dir=$BASEDIR/img.test/ \
+        --make-poi-index --index --poi-address \
+        --route \
+        --draw-priority=31 \
+        --add-pois-to-areas \
+        --generate-sea=multipolygon,extend-sea-sectors,close-gaps=30000,floodblocker \
+        --housenumbers \
+  $BASEDIR/test.osm
+
+
