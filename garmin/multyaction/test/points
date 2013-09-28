@@ -4,8 +4,8 @@
 # block [] in #2 work always
 # #3 work always
 
-#1
-#name=* {name '${name|subst:superlongandnonreadablename=>short}' }
+#1 - try to enable/disable this line
+name=* {name '${name|subst:superlongandnonreadablename=>short}' }
 
 #2
 highway=bus_stop {name 'A: ${name}' } [0x2f17 resolution 20 default_name 'Bus stop']

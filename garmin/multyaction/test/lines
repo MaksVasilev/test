@@ -2,7 +2,7 @@
 # if #1 enabled - block {...} in #2 not work
 # #3 work always
 
-#1 
+#1 - try to enable/disable this line
 highway=* & name ~ '.*(street).*' {name '${name|subst:street=>} str.'}
 
 #2
