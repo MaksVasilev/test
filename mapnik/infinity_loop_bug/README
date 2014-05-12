@@ -1,0 +1,21 @@
+See https://github.com/mapnik/mapnik/issues/2218
+
+If style in XML file have rule to linear object:
+
+    <MarkersSymbolizer file="water-stream-arrow.svg" spacing="0" allow-overlap="false" placement="line"/>
+ 
+then mapnik can't generate output image, this have a infinity loop in progress. Only a kill of process can stop it.
+
+Change spacing to value > 0 and rewrite rule to:
+
+    <MarkersSymbolizer file="water-stream-arrow.svg" spacing="100" allow-overlap="false" placement="line"/>
+
+and mapnik can run as normal (~0.2 sec).
+
+Files:
+
+.xml - mapnik style
+.shp - source data to render (linear object)
+render.py - python script to render
+water-stream-arrow.svg - pattern image
+spacing-100-out.pdf - reference output with spacing="100" in style
